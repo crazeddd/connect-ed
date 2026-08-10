@@ -9,6 +9,7 @@ export default function Apply() {
         email: '',
         school: '',
         grade: '',
+        canDrive: '',
         experience: ''
     });
 
@@ -20,39 +21,39 @@ export default function Apply() {
     return (
         <main>
             <Navbar />
-            <section id="hero" class="flex align-center justify-center py-2">
+            <section id="apply" class="flex align-center justify-center py-2">
                 <form class="card" onSubmit={handleSubmit}>
-                    <div class="flex col g-3 items-center justify-center"> 
-                    <h1>Apply</h1>
-                    <p>Please fill out the info below.</p>
+                    <div class="flex col g-3 items-center justify-center">
+                        <h1>Apply</h1>
+                        <p>Please fill out the info below.</p>
                     </div>
                     <div class="flex col g-3">
-                    <div class="flex col g-2">
-                        <label for="name">Full Name</label>
-                        <input id="name" name="name" onChange={handleChange} value={form.name} required></input>
-                    </div>
-                    <div class="flex col g-2">
-                        <label for="email">Personal Email</label>
-                        <input id="email" name="email" type="email" onChange={handleChange} value={form.email} required></input>
-                    </div>
-                    <div class="flex col g-2">
-                        <label for="school">School</label>
-                        <input id="school" name="school" onChange={handleChange} value={form.school} required></input>
-                    </div>
-                    <div class="flex col g-2">
-                        <label for="grade">Grade</label>
-                        <select id="grade" name="grade" onChange={handleChange} value={form.grade} required>
-                            <option value="" disabled selected>Select your grade</option>
-                            <option value="9">9th</option>
-                            <option value="10">10th</option>
-                            <option value="11">11th</option>
-                            <option value="12">12th</option>
-                        </select>
-                    </div>
-                    <div class="flex col g-2">
-                        <label for="experience">Experience with coding (optional)</label>
-                        <textarea id="experience" name="experience" onChange={handleChange} value={form.experience}></textarea>
-                    </div>
+                        <div class="flex col g-2">
+                            <label for="name">Full Name</label>
+                            <input id="name" name="name" onChange={handleChange} value={form.name} required></input>
+                        </div>
+                        <div class="flex col g-2">
+                            <label for="email">Personal Email</label>
+                            <input id="email" name="email" type="email" onChange={handleChange} value={form.email} required></input>
+                        </div>
+                        <div class="flex col g-2">
+                            <label for="school">School</label>
+                            <input id="school" name="school" onChange={handleChange} value={form.school} required></input>
+                        </div>
+                        <div class="flex col g-2">
+                            <label for="grade">Grade</label>
+                            <select id="grade" name="grade" onChange={handleChange} value={form.grade} required>
+                                <option value="" disabled selected>Select your grade</option>
+                                <option value="9">9th</option>
+                                <option value="10">10th</option>
+                                <option value="11">11th</option>
+                                <option value="12">12th</option>
+                            </select>
+                        </div>
+                        <div class="flex col g-2">
+                            <label for="experience">Experience with coding (optional)</label>
+                            <textarea id="experience" name="experience" onChange={handleChange} value={form.experience}></textarea>
+                        </div>
                     </div>
                     <div class="flex g-2 items-center">
                         <input type="checkbox" id="consent" name="consent" required></input>

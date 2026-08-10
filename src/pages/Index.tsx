@@ -19,9 +19,9 @@ function App() {
       <Navbar />
       {!dismissed() && (
         <section id="banner">
-          <div class="flex justify-between items-center w-100 bg-secondary txt-center py-2 px-3 r-5 ">
+          <div class="flex justify-between items-center w-100 bg-secondary txt-center py-2 px-3 r-5">
             <i class="fa-solid fa-info-circle"></i>
-            <p>Applications now open for the 2026-2027 school year!</p>
+            <p>Applications open for the 2026-2027 school year!</p>
             <i style="cursor: pointer;" class="fa-solid fa-xmark" onclick={dismissBanner}></i>
           </div>
         </section>

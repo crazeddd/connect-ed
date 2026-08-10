@@ -996,7 +996,7 @@ button {
   }
 
   section {
-    padding: 6%;
+    padding: 0 6%;
   }
 
   .mobile-wrap {
@@ -1007,5 +1007,9 @@ button {
     width: 100%;
     max-width: 100%;
     min-width: 100%;
+  }
+
+  #about .p-5 {
+    padding: 2rem;
   }
 }
