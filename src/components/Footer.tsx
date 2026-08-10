@@ -11,6 +11,7 @@ export default function Footer() {
                     </a>
                 </div>
                 <p class="txt-muted">© 2026 Connect{"{ed}"}. All rights reserved.</p>
+                <p class="txt-muted">connectedwhs@gmail.com</p>
             </div>
         </footer>
     )

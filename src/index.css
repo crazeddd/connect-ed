@@ -124,7 +124,6 @@ a {
   }
 
   &.outline {
-    background: var(--acc-s);
     border: 1px solid var(--border);
   }
 
@@ -223,7 +222,7 @@ input {
   background: none;
   color: var(--txt);
   padding: 0 0.75rem;
-  height: 1.75rem;
+  height: 2rem;
   font-size: 0.85rem;
   border-radius: 0.5rem;
 
@@ -260,7 +259,6 @@ textarea:focus {
 }
 
 select {
-  all: none;
   border: solid 1px var(--border);
   background: var(--bg);
   color: var(--txt);
@@ -339,7 +337,7 @@ button {
     background: var(--acc-p);
 
     &:hover {
-      background: conic-gradient(var(--acc-p) 25%, var(--acc-s) 50%, var(--acc-s) 55%, var(--acc-t) 75%);
+      filter: brightness(1.2);
     }
   }
 
@@ -385,7 +383,6 @@ button {
   }
 
   &.outline {
-    background: var(--acc-s);
     border: 1px solid var(--border);
   }
 
@@ -502,21 +499,19 @@ button {
 
   & .content {
     position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 0%;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    width: 80%;
+    width: 100%;
     max-width: 600px;
-    border-radius: 1rem;
-    background: var(--acc-s);
+    background: var(--bg);
     border: 1px solid var(--border);
     padding: 2rem;
+    animation: fadeIn 0.3s ease-in-out;
   }
 
-  & .content::before {
+  &::before {
     content: "";
     position: fixed;
     left: 50%;
@@ -525,7 +520,16 @@ button {
     height: 100vh;
     width: 100vw;
     background: rgba(0, 0, 0, 0.5);
-    z-index: -1;
+    z-index: -5;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -909,6 +913,12 @@ button {
   overflow-x: auto;
 }
 
+
+#banner-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
 
 /* Screen Sizes */
 

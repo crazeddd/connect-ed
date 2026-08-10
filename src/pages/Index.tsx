@@ -21,7 +21,7 @@ function App() {
         <section id="banner">
           <div class="flex justify-between items-center w-100 bg-secondary txt-center py-2 px-3 r-5 ">
             <i class="fa-solid fa-info-circle"></i>
-            <p class="txt-bold">Applications now open for the 2026-2027 school year!</p>
+            <p>Applications now open for the 2026-2027 school year!</p>
             <i style="cursor: pointer;" class="fa-solid fa-xmark" onclick={dismissBanner}></i>
           </div>
         </section>
@@ -32,15 +32,15 @@ function App() {
             <a href="https://www.instagram.com/connect.ed/" target="_blank" rel="noopener noreferrer">
               <i class="fa-brands fa-instagram fa-lg"></i>
             </a>
-            <a href="https://discord.gg/QYXGpwSxFH" target="_blank" rel="noopener noreferrer">
+            <a href="https://discord.com/invite/XSPZ43Pmwe" target="_blank" rel="noopener noreferrer">
               <i class="fa-brands fa-discord fa-lg"></i>
             </a>
           </div>
           <h1>Help introduce students <br /> to the world of programming.</h1>
-          <p>Teaching elementary students in the Round Rock area since 2024.</p>
+          <p>Teaching students in the Round Rock area since 2024.</p>
           <div class="flex row g-3">
             <button class="button primary" onClick={() => navigate('/apply')}>Apply Now</button>
-            <button class="button outline">Learn More</button>
+            <button class="button outline" onClick={() => navigate('/about')}>Learn More</button>
           </div>
         </div>
         <div class="flex col g-3 justify-center desktop-only">

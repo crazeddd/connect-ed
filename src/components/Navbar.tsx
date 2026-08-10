@@ -14,8 +14,8 @@ export default function Navbar() {
                 </div>
                 <div class="flex g-5 txt-muted desktop-only">
                     <a href="/about">About</a>
-                    <a href="/plans">Schedule</a>
-                    <a href="/panel">More</a>
+                    <a href="/schedule">Schedule</a>
+                    <a href="/team">Team</a>
                 </div>
                 <div class="flex g-1 desktop-only">
                     <a href="/apply" class="button primary">
@@ -29,11 +29,11 @@ export default function Navbar() {
                 </div>
             </nav>
             {showModal() && (
-                <div class="modal">
+                <div class="modal bg-default">
                     <div class="content flex col b-all r-2">
                         <div class="flex justify-between items-center">
                             <a href="/">
-                                <h5>Connect(ed)</h5>
+                                <h5>Connect{"{ed}"}</h5>
                             </a>
                             <button onclick={() => setShowModal(false)} class="p-0">
                                 <i class="fa-solid fa-xmark fa-xl"></i>
@@ -41,21 +41,15 @@ export default function Navbar() {
                         </div>
                         <hr />
                         <a href="/about">About</a>
-                        <a href="/plans">Plans</a>
-                        <a href="/devlog">Devlog</a>
-                        <a href="https://status.kibihost.com/status/main" target="_blank">
-                            Status
-                        </a>
+                        <a href="/schedule">Schedule</a>
+                        <a href="/team">Team</a>
 
                         <div class="flex col g-3">
-                            <a class="button outline" href="/auth/signup">
-                                Sign Up
-                            </a>
-                            <a class="button outline" href="/auth/login">
-                                Login
+                            <a class="button primary" href="/apply">
+                                Apply
                             </a>
                             <a
-                                href="https://discord.gg/QYXGpwSxFH"
+                                href="https://discord.com/invite/XSPZ43Pmwe"
                                 target="_blank"
                                 class="button outline"
                             >
