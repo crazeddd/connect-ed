@@ -10,6 +10,7 @@ import About from './pages/About.tsx'
 import Apply from './pages/Apply.tsx'
 import Schedule from './pages/Schedule.tsx'
 import Team from './pages/Team.tsx'
+import Success from './pages/Success.tsx'
 
 const root = document.getElementById('root')
 
@@ -20,6 +21,7 @@ render(() => (
     <Route path="/apply" component={Apply} />
     <Route path="/schedule" component={Schedule} />
     <Route path="/team" component={Team} />
+    <Route path="/success" component={Success} />
     <Route path="*paramName" component={NotFound} />
   </Router>
 ), root!)

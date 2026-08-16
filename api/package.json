@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "googleapis": "^174.0.1",
+    "hono": "^4.13.2"
+  }
+}

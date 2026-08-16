@@ -528,6 +528,7 @@ button {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -918,6 +919,56 @@ button {
   width: 100%;
   max-width: 400px;
   height: auto;
+}
+
+/* Toasts */
+
+.toast-container {
+  position: fixed;
+  top: 1rem;
+  right: 50%;
+  transform: translateX(50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 10000;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: var(--acc-s);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: none;
+  width: 100%;
+  max-width: 500px;
+  min-width: 350px;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.toast-success {
+  background: var(--safe);
+}
+
+.toast-error {
+  background: var(--danger);
+}
+
+/* Spinner */
+.loader {
+  width: 1em;
+  height: 100%;
+  transform-origin: center;
+  animation: spinner_KYSC 0.75s infinite linear;
+}
+
+@keyframes spinner_KYSC {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Screen Sizes */
