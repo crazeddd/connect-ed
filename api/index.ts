@@ -1,6 +1,5 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { google } from "googleapis";
 
 const app = new Hono();
 

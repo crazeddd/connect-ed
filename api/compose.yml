@@ -1,9 +1,15 @@
 services:
   api:
-    build: ./api
-    container-name: connect-ed-api
+    build: ./
+    container_name: connect-ed-api
     restart: unless-stopped
     ports:
       - "8001:8001"
     env_file:
       - .env
+  networks:
+      - cf_tunnel
+
+networks:
+  cf_tunnel:
+    external: true

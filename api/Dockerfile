@@ -8,7 +8,7 @@ RUN bun install --frozen-lockfile
 
 COPY . .
 
-RUN bun build src/index.ts --outdir=dist --target=bun
+RUN bun build index.ts --outdir=dist --target=bun
 
 # Prod
 FROM oven/bun:latest
