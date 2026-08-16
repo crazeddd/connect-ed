@@ -6,11 +6,11 @@ const app = new Hono();
 app.use(
     "*",
     cors({
-        origin: [...process.env.CORS_ORIGINS!.split(",")],
+        origin: process.env.CORS_ORIGIN,
     })
 );
 
-async function validateTurnstile(token, remoteip) {
+async function validateTurnstile(token: string, remoteip: string) {
     try {
         const response = await fetch(
             "https://challenges.cloudflare.com/turnstile/v0/siteverify",
@@ -20,7 +20,7 @@ async function validateTurnstile(token, remoteip) {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    secret: SECRET_KEY,
+                    secret: process.env.TURNSTILE_SECRET_KEY,
                     response: token,
                     remoteip: remoteip,
                 }),
@@ -36,38 +36,87 @@ async function validateTurnstile(token, remoteip) {
 }
 
 app.post("/applications", async (c) => {
-    const data = await c.req.json();
+    try {
+        const {
+            name,
+            email,
+            school,
+            grade,
+            canDrive,
+            experience,
+            captchaToken,
+        } = await c.req.json();
 
-    const verified = await validateTurnstile(data.captchaToken, c.req.headers.get("x-forwarded-for") || c.req.headers.get("remote-addr"));
+        if (
+            typeof name !== "string" ||
+            typeof email !== "string" ||
+            typeof school !== "string" ||
+            typeof grade !== "string" ||
+            typeof canDrive !== "boolean" ||
+            typeof experience !== "string" ||
+            typeof captchaToken !== "string"
+        ) {
+            return c.json({
+                success: false,
+                error: "Invalid application data",
+            }, 400);
+        }
 
-    if (!verified.success) {
+        // Verify Turnstile
+        const verified = await validateTurnstile(
+            captchaToken,
+            c.req.header("CF-Connecting-IP") as string
+        );
+
+        if (!verified.success) {
+            return c.json({
+                success: false,
+                error: "Captcha verification failed",
+            }, 400);
+        }
+
+        const response = await fetch(
+            process.env.GOOGLE_SCRIPT_URL!,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    school,
+                    grade,
+                    canDrive,
+                    experience,
+                }),
+            }
+        );
+
+        if (!response.ok) {
+            console.error(
+                "Google Apps Script returned:",
+                response.status,
+                await response.text()
+            );
+
+            return c.json({
+                success: false,
+                error: "Failed to submit application",
+            }, 500);
+        }
+
+        return c.json({
+            success: true,
+        });
+    } catch (error) {
+        console.error("Application submission error:", error);
+
         return c.json({
             success: false,
-            error: "Captcha verification failed",
+            error: "Invalid request",
         }, 400);
     }
-
-    const response = await fetch(
-        process.env.GOOGLE_SCRIPT_URL!,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        }
-    );
-
-    if (!response.ok) {
-        return c.json({
-            success: false,
-            error: "Failed to submit application",
-        }, 500);
-    }
-
-    return c.json({
-        success: true,
-    });
 });
 
 app.get("/", (c) => {

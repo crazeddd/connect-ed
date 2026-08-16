@@ -11,6 +11,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function Apply() {
     const navigate = useNavigate();
+    const [canDrive, setCanDrive] = createSignal(false);
     const [loading, setLoading] = createSignal(false);
     const [captchaToken, setCaptchaToken] = createSignal("");
 
@@ -19,7 +20,6 @@ export default function Apply() {
         email: '',
         school: '',
         grade: '',
-        canDrive: false,
         experience: ''
     });
 
@@ -33,7 +33,7 @@ export default function Apply() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ ...form, captchaToken: captchaToken() }),
+                body: JSON.stringify({ ...form, captchaToken: captchaToken(), canDrive: canDrive() }),
             })
 
             const data = await res.json();
@@ -91,8 +91,8 @@ export default function Apply() {
                             </div>
                         </div>
                         <div class="flex g-2 items-center">
-                            <input type="checkbox" id="consent" name="consent"></input>
-                            <label for="consent">Can you drive yourself to events? (leave unchecked if no)</label>
+                            <input type="checkbox" id="canDrive" name="canDrive" onChange={(e) => setCanDrive(e.currentTarget.checked)} checked={canDrive()}></input>
+                            <label for="canDrive">Can you drive yourself to events? (leave unchecked if no)</label>
                         </div>
                         <p class="txt-muted">*Please note that this application is for HS students near or in the Round Rock area only.</p>
                         <Turnstile onVerify={(token) => setCaptchaToken(token)} />
